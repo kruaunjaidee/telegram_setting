@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Telegram Bot Info</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.0/dist/sweetalert2.min.css">
+  <style>
+    .copy-btn {
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container my-5">
+    <div class="text-center d-block mx-auto">
+      <img src="https://aliyahaunjo.github.io/image/kruaun.png" width="100px;" />
+    </div>
+    <h1 class="text-center mb-4">Telegram Bot Information</h1>
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <form id="botForm">
+              <div class="mb-3">
+                <label for="botToken" class="form-label">Bot Token</label>
+                <div class="input-group">
+                  <input type="text" class="form-control" id="botToken" placeholder="Enter your bot token" required>
+                  <button class="btn btn-outline-secondary copy-btn" type="button"
+                    onclick="copyToClipboard('botToken')">
+                    <i class="bi bi-clipboard"></i>
+                  </button>
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label for="webhookUrl" class="form-label">Webhook URL</label>
+                <div class="input-group">
+                  <input type="text" class="form-control" id="webhookUrl" placeholder="Enter your webhook URL">
+                  <button class="btn btn-outline-secondary copy-btn" type="button"
+                    onclick="copyToClipboard('webhookUrl')">
+                    <i class="bi bi-clipboard"></i>
+                  </button>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label for="botName" class="form-label">Bot Name</label>
+                  <div class="input-group">
+                    <input type="text" class="form-control" id="botName" readonly>
+                    <button class="btn btn-outline-secondary copy-btn" type="button"
+                      onclick="copyToClipboard('botName')">
+                      <i class="bi bi-clipboard"></i>
+                    </button>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="botUsername" class="form-label">Username</label>
+                  <div class="input-group">
+                    <input type="text" class="form-control" id="botUsername" readonly>
+                    <button class="btn btn-outline-secondary copy-btn" type="button"
+                      onclick="copyToClipboard('botUsername')">
+                      <i class="bi bi-clipboard"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label for="botId" class="form-label">Bot ID</label>
+                  <div class="input-group">
+                    <input type="text" class="form-control" id="botId" readonly>
+                    <button class="btn btn-outline-secondary copy-btn" type="button" onclick="copyToClipboard('botId')">
+                      <i class="bi bi-clipboard"></i>
+                    </button>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="chatId" class="form-label">Chat ID</label>
+                  <div class="input-group">
+                    <input type="text" class="form-control" id="chatId" readonly>
+                    <button class="btn btn-outline-secondary copy-btn" type="button"
+                      onclick="copyToClipboard('chatId')">
+                      <i class="bi bi-clipboard"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label for="firstName" class="form-label">First Name</label>
+                  <div class="input-group">
+                    <input type="text" class="form-control" id="firstName" readonly>
+                    <button class="btn btn-outline-secondary copy-btn" type="button"
+                      onclick="copyToClipboard('firstName')">
+                      <i class="bi bi-clipboard"></i>
+                    </button>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="lastName" class="form-label">Last Name</label>
+                  <div class="input-group">
+                    <input type="text" class="form-control" id="lastName" readonly>
+                    <button class="btn btn-outline-secondary copy-btn" type="button"
+                      onclick="copyToClipboard('lastName')">
+                      <i class="bi bi-clipboard"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label for="username" class="form-label">Username</label>
+                  <div class="input-group">
+                    <input type="text" class="form-control" id="username" readonly>
+                    <button class="btn btn-outline-secondary copy-btn" type="button"
+                      onclick="copyToClipboard('username')">
+                      <i class="bi bi-clipboard"></i>
+                    </button>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="languageCode" class="form-label">Language Code</label>
+                  <div class="input-group">
+                    <input type="text" class="form-control" id="languageCode" readonly>
+                    <button class="btn btn-outline-secondary copy-btn" type="button"
+                      onclick="copyToClipboard('languageCode')">
+                      <i class="bi bi-clipboard"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label for="groupId" class="form-label">Group ID</label>
+                  <div class="input-group">
+                    <input type="text" class="form-control" id="groupId" readonly>
+                    <button class="btn btn-outline-secondary copy-btn" type="button"
+                      onclick="copyToClipboard('groupId')">
+                      <i class="bi bi-clipboard"></i>
+                    </button>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="chatType" class="form-label">Chat Type</label>
+                  <div class="input-group">
+                    <input type="text" class="form-control" id="chatType" readonly>
+                    <button class="btn btn-outline-secondary copy-btn" type="button"
+                      onclick="copyToClipboard('chatType')">
+                      <i class="bi bi-clipboard"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <p class="text-danger">Can't use getUpdates method while webhook is active; <br>use deleteWebhook to delete the webhook first</p>
+              </div>
+              <div class="d-flex justify-content-between">
+                <button type="submit" class="btn btn-primary">Get Bot Info</button>
+                <button type="button" class="btn btn-success" onclick="setWebhook()">Set Webhook</button>
+                <button type="button" class="btn btn-danger" onclick="deleteWebhook()">Delete Webhook</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="d-block mx-auto mt-3">
+      <div class="text-center">
+        <img src="https://aliyahaunjo.github.io/image/kruaun.png" width="50px;" />
+        <h6 id="footer-year"></h6>
+      </div>
+    </footer>
+  </div>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.0/dist/sweetalert2.all.min.js"></script>
+  <script>
+    // Set the current year in the footer
+    const currentYear = new Date().getFullYear();
+    document.getElementById('footer-year').innerHTML = `© ${currentYear} - พัฒนาโดย ครูอั๋น ใจดี`;
+
+    function copyToClipboard(id) {
+      const input = document.getElementById(id);
+      input.select();
+      input.setSelectionRange(0, 99999);
+      navigator.clipboard.writeText(input.value).then(() => {
+        Swal.fire({
+          icon: 'success',
+          title: 'คัดลอกแล้ว',
+          text: input.value,
+          timer: 1500,
+          timerProgressBar: true,
+          showConfirmButton: false
+        });
+      }).catch(err => {
+        console.error('คัดลอกไม่สำเร็จ:', err);
+        Swal.fire({
+          icon: 'error',
+          title: 'คัดลอกล้มเหลว',
+          text: 'ไม่สามารถคัดลอกข้อความได้'
+        });
+      });
+    }
+
+    function deleteWebhook() {
+      const botToken = document.getElementById('botToken').value;
+      if (!botToken) {
+        Swal.fire({
+          icon: 'warning',
+          title: 'กรุณากรอกโทเค็นบอท',
+          text: 'คุณต้องใส่โทเค็นบอทก่อนลบ Webhook'
+        });
+        return;
+      }
+
+      const url = `https://api.telegram.org/bot${botToken}/deleteWebhook`;
+
+      fetch(url)
+        .then(response => response.json())
+        .then(data => {
+          if (data.ok) {
+            Swal.fire({
+              icon: 'success',
+              title: 'ลบ Webhook สำเร็จ',
+              text: 'Webhook ของบอทถูกลบแล้ว'
+            });
+          } else {
+            Swal.fire({
+              icon: 'error',
+              title: 'ลบ Webhook ไม่สำเร็จ',
+              text: data.description || 'ไม่สามารถลบ Webhook ได้'
+            });
+          }
+        })
+        .catch(error => {
+          Swal.fire({
+            icon: 'error',
+            title: 'เกิดข้อผิดพลาด',
+            text: 'ไม่สามารถติดต่อ Telegram API ได้'
+          });
+          console.error('Error:', error);
+        });
+    }
+
+    function setWebhook() {
+      const botToken = document.getElementById('botToken').value;
+      const webhookUrl = document.getElementById('webhookUrl').value;
+
+      if (!botToken || !webhookUrl) {
+        Swal.fire({
+          icon: 'warning',
+          title: 'กรุณากรอกโทเค็นบอทและ Webhook URL',
+          text: 'คุณต้องใส่โทเค็นบอทและ Webhook URL ก่อนตั้งค่า Webhook'
+        });
+        return;
+      }
+
+      const url = `https://api.telegram.org/bot${botToken}/setWebhook?url=${encodeURIComponent(webhookUrl)}`;
+
+      fetch(url)
+        .then(response => response.json())
+        .then(data => {
+          if (data.ok) {
+            Swal.fire({
+              icon: 'success',
+              title: 'ตั้งค่า Webhook สำเร็จ',
+              text: 'Webhook ของบอทถูกตั้งค่าแล้ว'
+            });
+          } else {
+            Swal.fire({
+              icon: 'error',
+              title: 'ตั้งค่า Webhook ไม่สำเร็จ',
+              text: data.description || 'ไม่สามารถตั้งค่า Webhook ได้'
+            });
+          }
+        })
+        .catch(error => {
+          Swal.fire({
+            icon: 'error',
+            title: 'เกิดข้อผิดพลาด',
+            text: 'ไม่สามารถติดต่อ Telegram API ได้'
+          });
+          console.error('Error:', error);
+        });
+    }
+
+    document.getElementById('botForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const botToken = document.getElementById('botToken').value;
+
+      try {
+        // Get bot information
+        const botResponse = await fetch(`https://api.telegram.org/bot${botToken}/getMe`);
+        const botData = await botResponse.json();
+
+        if (!botData.ok) {
+          throw new Error(botData.description || 'ไม่สามารถดึงข้อมูลบอทได้');
+        }
+
+        // Get updates to fetch chat information
+        const updatesResponse = await fetch(`https://api.telegram.org/bot${botToken}/getUpdates?limit=100`);
+        const updatesData = await updatesResponse.json();
+
+        // Populate bot information
+        document.getElementById('botName').value = botData.result.first_name || '';
+        document.getElementById('botUsername').value = `@${botData.result.username}` || '';
+        document.getElementById('botId').value = botData.result.id || '';
+
+        // Initialize variables for chat information
+        let privateChat = null;
+        let groupChat = null;
+        let from = {};
+        let chat = {};
+
+        // Process updates to find private and group chats
+        if (updatesData.result && updatesData.result.length > 0) {
+          // Sort updates by date (most recent first) to prioritize latest data
+          updatesData.result.sort((a, b) => (b.message?.date || 0) - (a.message?.date || 0));
+
+          for (const update of updatesData.result) {
+            const messageChat = update.message?.chat || update.my_chat_member?.chat;
+            const messageFrom = update.message?.from || update.my_chat_member?.from;
+
+            if (messageChat && messageFrom) {
+              if (messageChat.type === 'private' && !privateChat) {
+                privateChat = {
+                  chatId: messageChat.id,
+                  firstName: messageFrom.first_name || '',
+                  lastName: messageFrom.last_name || '',
+                  username: messageFrom.username ? `@${messageFrom.username}` : '',
+                  languageCode: messageFrom.language_code || '',
+                  chatType: 'Private Chat'
+                };
+              } else if (['group', 'supergroup', 'channel'].includes(messageChat.type) && !groupChat) {
+                groupChat = {
+                  groupId: messageChat.id,
+                  title: messageChat.title || '',
+                  chatType: 'Group Chat',
+                  rawType: messageChat.type
+                };
+              }
+              // Store the most recent sender info
+              from = messageFrom;
+              chat = messageChat;
+            }
+          }
+
+          // Populate form fields based on available data
+          document.getElementById('chatId').value = privateChat?.chatId || '';
+          document.getElementById('firstName').value = privateChat?.firstName || from.first_name || '';
+          document.getElementById('lastName').value = privateChat?.lastName || from.last_name || '';
+          document.getElementById('username').value = privateChat?.username || (from.username ? `@${from.username}` : '');
+          document.getElementById('languageCode').value = privateChat?.languageCode || from.language_code || '';
+          document.getElementById('groupId').value = groupChat?.groupId || '';
+          document.getElementById('chatType').value = privateChat?.chatType || groupChat?.chatType || '';
+
+          // Prepare SweetAlert popup content
+          const popupHtml = `
+            <p>ชื่อบอท: ${botData.result.first_name}</p>
+            <p>ชื่อผู้ใช้: @${botData.result.username}</p>
+            <p>ID บอท: ${botData.result.id}</p>
+            <p>Chat ID (Private): ${privateChat?.chatId || 'ไม่พบข้อมูล'}</p>
+            <p>First Name: ${privateChat?.firstName || from.first_name || 'ไม่พบข้อมูล'}</p>
+            <p>Last Name: ${privateChat?.lastName || from.last_name || 'ไม่พบข้อมูล'}</p>
+            <p>Username: ${privateChat?.username || (from.username ? `@${from.username}` : 'ไม่พบข้อมูล')}</p>
+            <p>Language Code: ${privateChat?.languageCode || from.language_code || 'ไม่พบข้อมูล'}</p>
+            <p>Group ID: ${groupChat?.groupId || 'ไม่พบข้อมูล'}</p>
+            <p>Group Title: ${groupChat?.title || 'ไม่พบข้อมูล'}</p>
+            <p>Chat Type: ${privateChat?.chatType || groupChat?.chatType || 'ไม่พบข้อมูล'} ${groupChat?.rawType ? '(' + groupChat.rawType + ')' : ''}</p>
+          `;
+
+          Swal.fire({
+            title: 'ข้อมูลบอท',
+            html: popupHtml,
+            icon: 'success'
+          });
+        } else {
+          // Clear fields if no updates are found
+          document.getElementById('chatId').value = '';
+          document.getElementById('firstName').value = '';
+          document.getElementById('lastName').value = '';
+          document.getElementById('username').value = '';
+          document.getElementById('languageCode').value = '';
+          document.getElementById('groupId').value = '';
+          document.getElementById('chatType').value = '';
+
+          Swal.fire({
+            title: 'ข้อมูลบอท',
+            html: `
+              <p>ชื่อบอท: ${botData.result.first_name}</p>
+              <p>ชื่อผู้ใช้: @${botData.result.username}</p>
+              <p>ID บอท: ${botData.result.id}</p>
+              <p>Chat ID (Private): ไม่พบข้อมูล</p>
+              <p>First Name: ไม่พบข้อมูล</p>
+              <p>Last Name: ไม่พบข้อมูล</p>
+              <p>Username: ไม่พบข้อมูล</p>
+              <p>Language Code: ไม่พบข้อมูล</p>
+              <p>Group ID: ไม่พบข้อมูล</p>
+              <p>Group Title: ไม่พบข้อมูล</p>
+              <p>Chat Type: ไม่พบข้อมูล</p>
+            `,
+            icon: 'success'
+          });
+        }
+      } catch (error) {
+        Swal.fire({
+          title: 'เกิดข้อผิดพลาด',
+          text: error.message || 'ไม่สามารถดึงข้อมูลบอทได้ กรุณาตรวจสอบ Token',
+          icon: 'error'
+        });
+        console.error('Error:', error);
+      }
+    });
+  </script>
+</body>
+
+</html>
