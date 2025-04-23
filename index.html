@@ -8,8 +8,84 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.0/dist/sweetalert2.min.css">
   <style>
+    body {
+      background-color: #f8f9fa;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .container {
+      max-width: 1500px;
+    }
+    .card {
+      border: none;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      background: #ffffff;
+    }
+    .card-header {
+      background: linear-gradient(90deg, #007bff, #00d4ff);
+      color: white;
+      border-radius: 15px 15px 0 0;
+      font-weight: 600;
+      text-align: center;
+      padding: 1rem;
+    }
+    .form-label {
+      font-weight: 500;
+      color: #333;
+    }
+    .input-group {
+      margin-bottom: 1rem;
+    }
+    .form-control {
+      border-radius: 8px;
+      border: 1px solid #ced4da;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    .form-control:focus {
+      border-color: #007bff;
+      box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+    }
     .copy-btn {
-      cursor: pointer;
+      border-radius: 8px;
+      background: #e9ecef;
+      border: none;
+      transition: background 0.3s;
+    }
+    .copy-btn:hover {
+      background: #d3d7da;
+    }
+    .btn-primary, .btn-success, .btn-danger {
+      border-radius: 8px;
+      padding: 0.5rem 1.5rem;
+      font-weight: 500;
+    }
+    .btn-primary {
+      background: #007bff;
+      border: none;
+    }
+    .btn-success {
+      background: #28a745;
+      border: none;
+    }
+    .btn-danger {
+      background: #dc3545;
+      border: none;
+    }
+    .section-header {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #007bff;
+      margin: 1.5rem 0 1rem;
+    }
+    .text-danger {
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+    footer {
+      margin-top: 2rem;
+      padding: 1rem 0;
+      background: #e9ecef;
+      border-radius: 10px;
     }
   </style>
 </head>
@@ -17,15 +93,18 @@
 <body>
   <div class="container my-5">
     <div class="text-center d-block mx-auto">
-      <img src="https://aliyahaunjo.github.io/image/kruaun.png" width="100px;" />
-      <!-- <h6 id="footer-year"></h6> -->
+      <img src="https://aliyahaunjo.github.io/image/kruaun.png" width="100px;" alt="Logo" />
     </div>
     <h1 class="text-center mb-4">Telegram Bot Information</h1>
     <div class="row justify-content-center">
-      <div class="col-md-6">
+      <div class="col-md-8">
         <div class="card">
+          <div class="card-header">
+            Bot Configuration
+          </div>
           <div class="card-body">
             <form id="botForm">
+              <div class="section-header">Bot Settings</div>
               <div class="mb-3">
                 <label for="botToken" class="form-label">Bot Token</label>
                 <div class="input-group">
@@ -48,6 +127,7 @@
                 </div>
               </div>
 
+              <div class="section-header">Bot Information</div>
               <div class="row">
                 <div class="col-md-6 mb-3">
                   <label for="botName" class="form-label">Bot Name</label>
@@ -82,7 +162,7 @@
                   </div>
                 </div>
                 <div class="col-md-6 mb-3">
-                  <label for="chatId" class="form-label">Chat ID</label>
+                  <label for="chatId" class="form-label">Chat ID (Private)</label>
                   <div class="input-group">
                     <input type="text" class="form-control" id="chatId" readonly>
                     <button class="btn btn-outline-secondary copy-btn" type="button"
@@ -139,8 +219,9 @@
                 </div>
               </div>
 
+              <div class="section-header">Group Information</div>
               <div class="row">
-                <div class="col-md-6 mb-3">
+                <div class="col-md-4 mb-3">
                   <label for="groupId" class="form-label">Group ID</label>
                   <div class="input-group">
                     <input type="text" class="form-control" id="groupId" readonly>
@@ -150,7 +231,17 @@
                     </button>
                   </div>
                 </div>
-                <div class="col-md-6 mb-3">
+                <div class="col-md-4 mb-3">
+                  <label for="groupTitle" class="form-label">Group Title</label>
+                  <div class="input-group">
+                    <input type="text" class="form-control" id="groupTitle" readonly>
+                    <button class="btn btn-outline-secondary copy-btn" type="button"
+                      onclick="copyToClipboard('groupTitle')">
+                      <i class="bi bi-clipboard"></i>
+                    </button>
+                  </div>
+                </div>
+                <div class="col-md-4 mb-3">
                   <label for="chatType" class="form-label">Chat Type</label>
                   <div class="input-group">
                     <input type="text" class="form-control" id="chatType" readonly>
@@ -161,11 +252,11 @@
                   </div>
                 </div>
               </div>
+
               <div>
-                <P class="text-danger">can't use getUpdates method while webhook is active; <br>use deleteWebhook to delete the webhook first"</P>
+                <p class="text-danger">Can't use getUpdates method while webhook is active; <br>use deleteWebhook to delete the webhook first</p>
               </div>
-              <div class="d-flex justify-content-between">
-                
+              <div class="d-flex justify-content-between flex-nowrap">
                 <button type="submit" class="btn btn-primary">Get Bot Info</button>
                 <button type="button" class="btn btn-success" onclick="setWebhook()">Set Webhook</button>
                 <button type="button" class="btn btn-danger" onclick="deleteWebhook()">Delete Webhook</button>
@@ -175,9 +266,9 @@
         </div>
       </div>
     </div>
-    <footer class="d-block mx-auto mt-3">
+    <footer class="d-block mx-auto">
       <div class="text-center">
-        <img src="https://aliyahaunjo.github.io/image/kruaun.png" width="50px;" />
+        <img src="https://aliyahaunjo.github.io/image/kruaun.png" width="50px;" alt="Footer Logo" />
         <h6 id="footer-year"></h6>
       </div>
     </footer>
@@ -186,12 +277,9 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.0/dist/sweetalert2.all.min.js"></script>
   <script>
-
-    // Get the current year
+    // Set the current year in the footer
     const currentYear = new Date().getFullYear();
-    // Set it in the footer
-    document.getElementById('footer-year').innerHTML = `&copy; ${currentYear} - พัฒนาโดย ครูอั๋น ใจดี`;
-
+    document.getElementById('footer-year').innerHTML = `© ${currentYear} - พัฒนาโดย ครูอั๋น ใจดี`;
 
     function copyToClipboard(id) {
       const input = document.getElementById(id);
@@ -303,7 +391,25 @@
       const botToken = document.getElementById('botToken').value;
 
       try {
-        // First, get bot information
+        // Check webhook status
+        const webhookResponse = await fetch(`https://api.telegram.org/bot${botToken}/getWebhookInfo`);
+        const webhookData = await webhookResponse.json();
+
+        if (!webhookData.ok) {
+          throw new Error(webhookData.description || 'ไม่สามารถตรวจสอบสถานะ Webhook ได้');
+        }
+
+        if (webhookData.result.url) {
+          Swal.fire({
+            icon: 'warning',
+            title: 'Webhook ยังคงทำงาน',
+            text: 'กรุณาลบ Webhook ก่อนใช้ getUpdates โดยคลิกปุ่ม "Delete Webhook"',
+            confirmButtonText: 'ตกลง'
+          });
+          return;
+        }
+
+        // Get bot information
         const botResponse = await fetch(`https://api.telegram.org/bot${botToken}/getMe`);
         const botData = await botResponse.json();
 
@@ -311,51 +417,97 @@
           throw new Error(botData.description || 'ไม่สามารถดึงข้อมูลบอทได้');
         }
 
-        // Then, get updates to fetch additional information
-        const updatesResponse = await fetch(`https://api.telegram.org/bot${botToken}/getUpdates?limit=1`);
-        const updatesData = await updatesResponse.json();
-
+        // Populate bot information
         document.getElementById('botName').value = botData.result.first_name || '';
         document.getElementById('botUsername').value = `@${botData.result.username}` || '';
         document.getElementById('botId').value = botData.result.id || '';
 
-        // Try to get chat information from updates
-        if (updatesData.result && updatesData.result.length > 0) {
-          const update = updatesData.result[0];
-          const from = update.my_chat_member?.from || update.message?.from || {};
-          const chat = update.my_chat_member?.chat || update.message?.chat || {};
+        // Get updates to fetch chat information
+        const updatesResponse = await fetch(`https://api.telegram.org/bot${botToken}/getUpdates?limit=100`);
+        const updatesData = await updatesResponse.json();
 
-          document.getElementById('chatId').value = from.id || '';
-          document.getElementById('firstName').value = from.first_name || '';
-          document.getElementById('lastName').value = from.last_name || '';
-          document.getElementById('username').value = from.username ? `@${from.username}` : '';
-          document.getElementById('languageCode').value = from.language_code || '';
-          document.getElementById('groupId').value = chat.id || '';
-          document.getElementById('chatType').value = chat.type || '';
+        if (!updatesData.ok) {
+          throw new Error(updatesData.description || 'ไม่สามารถดึงข้อมูลอัพเดทได้');
+        }
+
+        // Initialize variables for chat information
+        let privateChat = null;
+        let groupChat = null;
+        let from = {};
+        let chat = {};
+
+        // Process updates to find private and group chats
+        if (updatesData.result && updatesData.result.length > 0) {
+          // Sort updates by date (most recent first)
+          updatesData.result.sort((a, b) => (b.message?.date || 0) - (a.message?.date || 0));
+
+          for (const update of updatesData.result) {
+            const messageChat = update.message?.chat || update.my_chat_member?.chat;
+            const messageFrom = update.message?.from || update.my_chat_member?.from;
+
+            if (messageChat && messageFrom) {
+              if (messageChat.type === 'private' && !privateChat) {
+                privateChat = {
+                  chatId: messageChat.id,
+                  firstName: messageFrom.first_name || '',
+                  lastName: messageFrom.last_name || '',
+                  username: messageFrom.username ? `@${messageFrom.username}` : '',
+                  languageCode: messageFrom.language_code || '',
+                  chatType: 'Private Chat'
+                };
+              } else if (['group', 'supergroup', 'channel'].includes(messageChat.type) && !groupChat) {
+                groupChat = {
+                  groupId: messageChat.id,
+                  groupTitle: messageChat.title || '',
+                  chatType: `Group Chat (${messageChat.type})`,
+                  rawType: messageChat.type
+                };
+              }
+              // Store the most recent sender info
+              from = messageFrom;
+              chat = messageChat;
+            }
+          }
+
+          // Populate form fields
+          document.getElementById('chatId').value = privateChat?.chatId || '';
+          document.getElementById('firstName').value = privateChat?.firstName || from.first_name || '';
+          document.getElementById('lastName').value = privateChat?.lastName || from.last_name || '';
+          document.getElementById('username').value = privateChat?.username || (from.username ? `@${from.username}` : '');
+          document.getElementById('languageCode').value = privateChat?.languageCode || from.language_code || '';
+          document.getElementById('groupId').value = groupChat?.groupId || '';
+          document.getElementById('groupTitle').value = groupChat?.groupTitle || '';
+          document.getElementById('chatType').value = groupChat?.chatType || privateChat?.chatType || '';
+
+          // Prepare SweetAlert popup
+          const popupHtml = `
+            <p>ชื่อบอท: ${botData.result.first_name}</p>
+            <p>ชื่อผู้ใช้: @${botData.result.username}</p>
+            <p>ID บอท: ${botData.result.id}</p>
+            <p>Chat ID (Private): ${privateChat?.chatId || 'ไม่พบข้อมูล'}</p>
+            <p>First Name: ${privateChat?.firstName || from.first_name || 'ไม่พบข้อมูล'}</p>
+            <p>Last Name: ${privateChat?.lastName || from.last_name || 'ไม่พบข้อมูล'}</p>
+            <p>Username: ${privateChat?.username || (from.username ? `@${from.username}` : 'ไม่พบข้อมูล')}</p>
+            <p>Language Code: ${privateChat?.languageCode || from.language_code || 'ไม่พบข้อมูล'}</p>
+            <p>Group ID: ${groupChat?.groupId || 'ไม่พบข้อมูล'}</p>
+            <p>Group Title: ${groupChat?.groupTitle || 'ไม่พบข้อมูล'}</p>
+            <p>Chat Type: ${groupChat?.chatType || privateChat?.chatType || 'ไม่พบข้อมูล'}</p>
+          `;
 
           Swal.fire({
             title: 'ข้อมูลบอท',
-            html: `
-              <p>ชื่อบอท: ${botData.result.first_name}</p>
-              <p>ชื่อผู้ใช้: @${botData.result.username}</p>
-              <p>ID บอท: ${botData.result.id}</p>
-              <p>Chat ID: ${from.id || 'ไม่พบข้อมูล'}</p>
-              <p>First Name: ${from.first_name || 'ไม่พบข้อมูล'}</p>
-              <p>Last Name: ${from.last_name || 'ไม่พบข้อมูล'}</p>
-              <p>Username: ${from.username ? `@${from.username}` : 'ไม่พบข้อมูล'}</p>
-              <p>Language Code: ${from.language_code || 'ไม่พบข้อมูล'}</p>
-              <p>Group ID: ${chat.id || 'ไม่พบข้อมูล'}</p>
-              <p>Chat Type: ${chat.type || 'ไม่พบข้อมูล'}</p>
-            `,
+            html: popupHtml,
             icon: 'success'
           });
         } else {
+          // Clear chat-related fields if no updates
           document.getElementById('chatId').value = '';
           document.getElementById('firstName').value = '';
           document.getElementById('lastName').value = '';
           document.getElementById('username').value = '';
           document.getElementById('languageCode').value = '';
           document.getElementById('groupId').value = '';
+          document.getElementById('groupTitle').value = '';
           document.getElementById('chatType').value = '';
 
           Swal.fire({
@@ -364,21 +516,36 @@
               <p>ชื่อบอท: ${botData.result.first_name}</p>
               <p>ชื่อผู้ใช้: @${botData.result.username}</p>
               <p>ID บอท: ${botData.result.id}</p>
-              <p>Chat ID: ไม่พบข้อมูล</p>
+              <p>Chat ID (Private): ไม่พบข้อมูล</p>
               <p>First Name: ไม่พบข้อมูล</p>
               <p>Last Name: ไม่พบข้อมูล</p>
               <p>Username: ไม่พบข้อมูล</p>
               <p>Language Code: ไม่พบข้อมูล</p>
               <p>Group ID: ไม่พบข้อมูล</p>
+              <p>Group Title: ไม่พบข้อมูล</p>
               <p>Chat Type: ไม่พบข้อมูล</p>
             `,
-            icon: 'success'
+            icon: 'info',
+            text: 'ไม่พบข้อมูลการแชท กรุณาส่งข้อความถึงบอทหรือเพิ่มบอทในกลุ่มก่อน'
           });
         }
       } catch (error) {
+        // Clear all fields on error
+        document.getElementById('botName').value = '';
+        document.getElementById('botUsername').value = '';
+        document.getElementById('botId').value = '';
+        document.getElementById('chatId').value = '';
+        document.getElementById('firstName').value = '';
+        document.getElementById('lastName').value = '';
+        document.getElementById('username').value = '';
+        document.getElementById('languageCode').value = '';
+        document.getElementById('groupId').value = '';
+        document.getElementById('groupTitle').value = '';
+        document.getElementById('chatType').value = '';
+
         Swal.fire({
           title: 'เกิดข้อผิดพลาด',
-          text: error.message || 'ไม่สามารถดึงข้อมูลบอทได้ กรุณาตรวจสอบ Token',
+          text: error.message || 'ไม่สามารถดึงข้อมูลบอทได้ กรุณาตรวจสอบ Token และการเชื่อมต่อ',
           icon: 'error'
         });
         console.error('Error:', error);
